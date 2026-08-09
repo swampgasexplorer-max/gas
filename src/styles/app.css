@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Swamp Gas Explorer — Brand Color Palette
+   Defined as Tailwind v4 @theme variables so they're usable
+   as first-class utility classes: bg-void, text-swamp, etc.
+   ============================================================ */
+@theme {
+  --color-void: #06080F;       /* Void Black — page backgrounds */
+  --color-nebula: #140B2E;     /* Nebula Purple — cards, sidebars, surfaces */
+  --color-swamp: #00F090;      /* Swamp Gas Neon — primary accent, CTAs, pulses */
+  --color-probe: #8B3FCF;      /* Probe Violet — secondary accent, links */
+  --color-starlight: #D6DFFF;  /* Starlight — primary text */
+}
+
+@layer base {
+  html,
+  body {
+    @apply bg-void text-starlight antialiased;
+  }
+}
