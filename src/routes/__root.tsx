@@ -13,7 +13,14 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Swamp Gas Explorer — Autonomous UFO/UAP Research" },
+      {
+        title: "Swamp Gas Explorer — UFO Database, UAP Research & Evidence Archive",
+      },
+      {
+        name: "description",
+        content:
+          "Swamp Gas Explorer is an autonomous UAP research platform: a living UFO database and evidence archive that discovers, cross-references, and organizes public UFO sightings, declassified documents, and military UAP cases.",
+      },
     ],
     links: [{ rel: "stylesheet", href: appCss }],
   }),

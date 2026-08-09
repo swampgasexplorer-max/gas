@@ -19,3 +19,27 @@
     @apply bg-void text-starlight antialiased;
   }
 }
+
+/* ============================================================
+   Article typography — used by blog posts (BlogLayout).
+   ============================================================ */
+@layer components {
+  .article-body h2 {
+    @apply mt-10 mb-3 text-2xl font-bold tracking-tight text-starlight;
+  }
+  .article-body h3 {
+    @apply mt-8 mb-2 text-xl font-semibold text-swamp;
+  }
+  .article-body p {
+    @apply mb-4 leading-relaxed text-starlight/80;
+  }
+  .article-body ul {
+    @apply mb-4 list-disc space-y-1.5 pl-6 text-starlight/80;
+  }
+  .article-body strong {
+    @apply font-semibold text-starlight;
+  }
+  .article-body em {
+    @apply italic text-starlight/90;
+  }
+}
