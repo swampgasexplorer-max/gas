@@ -78,7 +78,7 @@ export const Route = createFileRoute("/dashboard/logs")({
 function LogsPage() {
   const data = Route.useLoaderData();
 
-  if (!data) return <DashboardLayout current="/dashboard/logs"><p className="text-gray-400">Loading...</p></DashboardLayout>;
+  if (!data) return <DashboardLayout current="/dashboard/logs"><p className="text-starlight/60">Loading...</p></DashboardLayout>;
 
   const { entries, dates, totalEntries, activeDate } = data;
 
@@ -93,7 +93,7 @@ function LogsPage() {
       <div className="space-y-6">
         <div>
           <h1 className="text-2xl font-bold">Activity Logs</h1>
-          <p className="text-gray-400 text-sm mt-1">
+          <p className="text-starlight/60 text-sm mt-1">
             {totalEntries > 0
               ? `${totalEntries} entries for ${activeDate}`
               : "Agent activity logs — entries appear as departments operate"}
@@ -108,8 +108,8 @@ function LogsPage() {
                 key={d}
                 className={`px-3 py-1 rounded-full text-xs ${
                   d === activeDate
-                    ? "bg-emerald-950 text-emerald-300 border border-emerald-800/50"
-                    : "bg-gray-900 text-gray-400 border border-gray-800"
+                    ? "bg-swamp/10 text-swamp border border-swamp/30"
+                    : "bg-nebula/60 text-starlight/50 border border-nebula/50"
                 }`}
               >
                 {d}
@@ -121,26 +121,26 @@ function LogsPage() {
         {/* Log entries */}
         <div>
           {entries.length === 0 ? (
-            <div className="text-center py-16 text-gray-500">
+            <div className="text-center py-16 text-starlight/40">
               <p className="text-4xl mb-3">📋</p>
               <p>No activity logged yet for today.</p>
               <p className="text-sm mt-1">Logs will appear here once agents begin operations.</p>
             </div>
           ) : (
-            <div className="space-y-0.5 font-mono text-xs max-h-[600px] overflow-y-auto">
+            <div className="space-y-0.5 font-mono text-xs max-h-[600px] overflow-auto">
               {entries.map((entry, i) => (
-                <div key={i} className="flex items-start gap-3 py-1.5 px-3 hover:bg-gray-900/30 rounded group">
-                  <span className="text-gray-600 shrink-0 w-20">
+                <div key={i} className="flex items-start gap-3 py-1.5 px-3 hover:bg-nebula/50 rounded group">
+                  <span className="text-starlight/30 shrink-0 w-20">
                     {new Date(entry.timestamp).toLocaleTimeString()}
                   </span>
-                  <span className="text-gray-500 shrink-0 w-16">{entry.department}</span>
-                  <span className="text-gray-500 shrink-0 w-20">{entry.agent}</span>
-                  <span className="text-gray-300 shrink-0 w-28">{entry.action}</span>
-                  <span className="text-gray-400 flex-1 truncate">{entry.details}</span>
-                  <span className={`shrink-0 ${resultColors[entry.result] || "text-gray-500"}`}>
+                  <span className="text-starlight/40 shrink-0 w-16">{entry.department}</span>
+                  <span className="text-starlight/40 shrink-0 w-20">{entry.agent}</span>
+                  <span className="text-starlight/80 shrink-0 w-28">{entry.action}</span>
+                  <span className="text-starlight/60 flex-1 truncate">{entry.details}</span>
+                  <span className={`shrink-0 ${resultColors[entry.result] || "text-starlight/40"}`}>
                     {entry.result}
                   </span>
-                  <span className="text-gray-600 shrink-0 w-16 text-right">
+                  <span className="text-starlight/30 shrink-0 w-16 text-right">
                     {entry.duration_ms > 0 ? `${entry.duration_ms}ms` : ""}
                   </span>
                 </div>

@@ -61,7 +61,7 @@ function Home() {
       {/* ============ NAV ============ */}
       <header className="sticky top-0 z-50 border-b border-nebula/50 bg-void/90 backdrop-blur">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
-          <Link to="/" className="flex items-center gap-2 font-bold text-swamp">
+          <Link to="/" className="flex items-center gap-2 font-bold text-swamp shrink-0 whitespace-nowrap">
             <span>👽</span>
             {SITE_NAME}
           </Link>
@@ -75,7 +75,7 @@ function Home() {
           </nav>
           <Link
             to="/dashboard"
-            className="rounded-lg bg-swamp px-3 py-1.5 text-sm font-semibold text-void hover:bg-swamp/85"
+            className="rounded-lg bg-swamp px-3 py-1.5 text-sm font-semibold text-void hover:bg-swamp/85 shrink-0 whitespace-nowrap"
           >
             Explore Database
           </Link>

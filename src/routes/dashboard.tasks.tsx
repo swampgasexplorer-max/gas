@@ -70,7 +70,7 @@ export const Route = createFileRoute("/dashboard/tasks")({
 function TaskQueuePage() {
   const data = Route.useLoaderData();
 
-  if (!data) return <DashboardLayout current="/dashboard/tasks"><p className="text-gray-400">Loading...</p></DashboardLayout>;
+  if (!data) return <DashboardLayout current="/dashboard/tasks"><p className="text-starlight/60">Loading...</p></DashboardLayout>;
 
   const { tasks, counts } = data;
 
@@ -86,7 +86,7 @@ function TaskQueuePage() {
       <div className="space-y-6">
         <div>
           <h1 className="text-2xl font-bold">Task Queue Monitor</h1>
-          <p className="text-gray-400 text-sm mt-1">Real-time view of all agent tasks across the system</p>
+          <p className="text-starlight/60 text-sm mt-1">Real-time view of all agent tasks across the system</p>
         </div>
 
         {/* Status counts */}
@@ -101,7 +101,7 @@ function TaskQueuePage() {
         <div>
           <h2 className="text-lg font-semibold mb-3">Tasks ({tasks.length})</h2>
           {tasks.length === 0 ? (
-            <div className="text-center py-12 text-gray-500">
+            <div className="text-center py-12 text-starlight/40">
               <p className="text-4xl mb-3">📭</p>
               <p>No tasks in the queue yet.</p>
               <p className="text-sm mt-1">Tasks will appear here when agents begin processing.</p>
@@ -109,17 +109,17 @@ function TaskQueuePage() {
           ) : (
             <div className="space-y-1 max-h-[600px] overflow-y-auto">
               {tasks.map((task) => (
-                <div key={task.id} className="bg-gray-900/30 rounded-lg px-4 py-3 border border-gray-800/30">
+                <div key={task.id} className="bg-nebula/40 rounded-lg px-4 py-3 border border-nebula/40">
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className={`text-xs px-2 py-0.5 rounded-full border ${statusColors[task.status]}`}>
                           {task.status}
                         </span>
-                        <span className="text-xs text-gray-500">P{task.priority}</span>
-                        <span className="text-sm font-medium text-gray-200 truncate">{task.task_type}</span>
+                        <span className="text-xs text-starlight/40">P{task.priority}</span>
+                        <span className="text-sm font-medium text-starlight/90 truncate">{task.task_type}</span>
                       </div>
-                      <div className="flex items-center gap-3 mt-1.5 text-xs text-gray-500">
+                      <div className="flex items-center gap-3 mt-1.5 text-xs text-starlight/50">
                         <span>{task.department}</span>
                         <span>·</span>
                         <span>{task.agent}</span>

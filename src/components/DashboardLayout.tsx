@@ -32,15 +32,16 @@ export function DashboardLayout({ children, current }: { children: ReactNode; cu
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex gap-6 pt-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:flex md:gap-6 pt-6">
         {/* Side nav */}
-        <nav className="hidden md:block w-52 shrink-0">
+        <nav className="hidden md:block w-52 shrink-0" aria-label="Dashboard sections">
           <div className="space-y-1 sticky top-20">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
-                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
+                aria-current={current === item.href ? "page" : undefined}
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-swamp ${
                   current === item.href
                     ? "bg-swamp/10 text-swamp border border-swamp/30"
                     : "text-starlight/50 hover:text-starlight/80 hover:bg-nebula/80"
@@ -53,7 +54,7 @@ export function DashboardLayout({ children, current }: { children: ReactNode; cu
             <div className="mt-6 pt-6 border-t border-nebula/50">
               <Link
                 to="/"
-                className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-starlight/40 hover:text-probe transition-colors"
+                className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-starlight/40 hover:text-probe transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-probe"
               >
                 <span>←</span>
                 Back to Site
@@ -62,14 +63,18 @@ export function DashboardLayout({ children, current }: { children: ReactNode; cu
           </div>
         </nav>
 
-        {/* Mobile nav — horizontal scroll */}
-        <nav className="md:hidden w-full mb-4 overflow-x-auto">
-          <div className="flex gap-1 pb-2">
+        {/* Mobile nav — sticky horizontal pill bar */}
+        <nav
+          aria-label="Dashboard sections"
+          className="md:hidden sticky top-14 z-40 -mx-4 sm:-mx-6 px-4 sm:px-6 overflow-x-auto border-b border-nebula/50 bg-void/90 backdrop-blur [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          <div className="flex gap-1 py-2">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
-                className={`shrink-0 px-3 py-1.5 rounded-full text-xs transition-colors ${
+                aria-current={current === item.href ? "page" : undefined}
+                className={`shrink-0 whitespace-nowrap px-3 py-1.5 rounded-full text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-swamp ${
                   current === item.href
                     ? "bg-swamp/10 text-swamp border border-swamp/30"
                     : "text-starlight/50 border border-nebula/50 hover:text-starlight/80 hover:bg-nebula/80"
