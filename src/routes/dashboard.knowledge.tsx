@@ -89,7 +89,7 @@ export const Route = createFileRoute("/dashboard/knowledge")({
 function KnowledgeGraphPage() {
   const data = Route.useLoaderData();
 
-  if (!data) return <DashboardLayout current="/dashboard/knowledge"><p className="text-gray-400">Loading...</p></DashboardLayout>;
+  if (!data) return <DashboardLayout current="/dashboard/knowledge"><p className="text-starlight/60">Loading...</p></DashboardLayout>;
 
   const { nodes, connections, counts, totalNodes, totalEdges } = data;
 
@@ -101,7 +101,7 @@ function KnowledgeGraphPage() {
       <div className="space-y-6">
         <div>
           <h1 className="text-2xl font-bold">Knowledge Graph</h1>
-          <p className="text-gray-400 text-sm mt-1">{totalNodes} nodes · {totalEdges} connections</p>
+          <p className="text-starlight/60 text-sm mt-1">{totalNodes} nodes · {totalEdges} connections</p>
         </div>
 
         {/* Category Counts */}
@@ -123,17 +123,17 @@ function KnowledgeGraphPage() {
           <h2 className="text-lg font-semibold mb-3">All Entities ({totalNodes})</h2>
           <div className="space-y-1 max-h-[500px] overflow-y-auto">
             {nodes.length === 0 ? (
-              <p className="text-gray-500 text-sm">No entities in the knowledge graph yet.</p>
+              <p className="text-starlight/40 text-sm">No entities in the knowledge graph yet.</p>
             ) : (
               nodes.map(node => (
-                <div key={node.id} className="flex items-center justify-between bg-gray-900/30 rounded px-3 py-2 text-sm border border-gray-800/30">
+                <div key={node.id} className="flex items-center justify-between bg-nebula/40 rounded px-3 py-2 text-sm border border-nebula/40">
                   <div className="flex items-center gap-2 min-w-0">
-                    <span className="text-xs px-1.5 py-0.5 rounded bg-gray-800 text-gray-400 uppercase shrink-0">
+                    <span className="text-xs px-1.5 py-0.5 rounded bg-nebula text-starlight/50 uppercase shrink-0">
                       {node.type.slice(0, 4)}
                     </span>
                     <span className="truncate">{node.title}</span>
                   </div>
-                  <span className="text-xs text-gray-500 shrink-0 ml-2">{node.details}</span>
+                  <span className="text-xs text-starlight/40 shrink-0 ml-2">{node.details}</span>
                 </div>
               ))
             )}
@@ -145,18 +145,18 @@ function KnowledgeGraphPage() {
           <h2 className="text-lg font-semibold mb-3">Recent Connections ({totalEdges})</h2>
           <div className="space-y-1 max-h-[400px] overflow-y-auto">
             {connections.length === 0 ? (
-              <p className="text-gray-500 text-sm">No connections yet.</p>
+              <p className="text-starlight/40 text-sm">No connections yet.</p>
             ) : (
               connections.slice(0, 30).map((conn, i) => {
                 const sourceNode = nodeMap.get(conn.source);
                 const targetNode = nodeMap.get(conn.target);
                 return (
-                  <div key={i} className="flex items-center gap-2 bg-gray-900/30 rounded px-3 py-2 text-sm border border-gray-800/30">
-                    <span className="text-xs text-purple-400 shrink-0">{conn.relationship}</span>
-                    <span className="text-gray-500">·</span>
-                    <span className="text-gray-300 truncate">{sourceNode?.title ?? conn.source}</span>
-                    <span className="text-gray-600">→</span>
-                    <span className="text-gray-300 truncate">{targetNode?.title ?? conn.target}</span>
+                  <div key={i} className="flex items-center gap-2 bg-nebula/40 rounded px-3 py-2 text-sm border border-nebula/40">
+                    <span className="text-xs text-probe shrink-0">{conn.relationship}</span>
+                    <span className="text-starlight/30">·</span>
+                    <span className="text-starlight/80 truncate min-w-0">{sourceNode?.title ?? conn.source}</span>
+                    <span className="text-starlight/30 shrink-0">→</span>
+                    <span className="text-starlight/80 truncate min-w-0">{targetNode?.title ?? conn.target}</span>
                   </div>
                 );
               })

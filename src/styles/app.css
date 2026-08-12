@@ -14,9 +14,36 @@
 }
 
 @layer base {
-  html,
+  html {
+    @apply antialiased;
+    color-scheme: dark;
+  }
   body {
-    @apply bg-void text-starlight antialiased;
+    @apply bg-void text-starlight;
+  }
+
+  /* Brand-tinted scrollbars (probe → swamp on hover) */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(139, 63, 207, 0.35);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 240, 144, 0.45);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(139, 63, 207, 0.45) transparent;
   }
 }
 

@@ -35,17 +35,17 @@ export function BlogLayout({
       {/* Sticky top nav */}
       <header className="sticky top-0 z-50 border-b border-nebula/50 bg-void/90 backdrop-blur">
         <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-4 sm:px-6">
-          <Link to="/" className="flex items-center gap-2 font-bold text-swamp hover:text-swamp/80">
+          <Link to="/" className="flex items-center gap-2 font-bold text-swamp hover:text-swamp/80 shrink-0 whitespace-nowrap">
             <span>👽</span>
             <span className="hidden sm:inline">Swamp Gas Explorer</span>
             <span className="sm:hidden">SGE</span>
           </Link>
-          <nav className="flex items-center gap-4 text-sm">
+          <nav className="flex items-center gap-4 text-sm overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.label}
                 to={item.to}
-                className="text-starlight/60 transition-colors hover:text-probe"
+                className="shrink-0 whitespace-nowrap text-starlight/60 transition-colors hover:text-probe"
               >
                 {item.label}
               </Link>

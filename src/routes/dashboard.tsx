@@ -112,7 +112,7 @@ function DashboardHome() {
         {/* Header */}
         <div>
           <h1 className="text-2xl font-bold">System Dashboard</h1>
-          <p className="text-gray-400 text-sm mt-1">Real-time overview of the Swamp Gas Explorer autonomous research system</p>
+          <p className="text-starlight/60 text-sm mt-1">Real-time overview of the Swamp Gas Explorer autonomous research system</p>
         </div>
 
         {/* Stat Cards */}
@@ -130,18 +130,18 @@ function DashboardHome() {
           <h2 className="text-lg font-semibold mb-3">Department Status</h2>
           <div className="space-y-2">
             {depts.map((d) => (
-              <div key={d.id} className="flex items-center justify-between bg-gray-900/50 rounded-lg px-4 py-3 border border-gray-800/50">
+              <div key={d.id} className="flex items-center justify-between bg-nebula/50 rounded-lg px-4 py-3 border border-nebula/60">
                 <div className="flex items-center gap-3">
                   <span className={`w-2 h-2 rounded-full ${
-                    d.status === "active" ? "bg-emerald-500 animate-pulse" : "bg-gray-600"
+                    d.status === "active" ? "bg-swamp animate-pulse" : "bg-starlight/25"
                   }`} />
                   <span className="font-medium text-sm">{d.name}</span>
                 </div>
-                <div className="flex items-center gap-4 text-xs text-gray-400">
+                <div className="flex items-center gap-4 text-xs text-starlight/50">
                   <span>{d.active_agents} agents</span>
                   <span>{d.tasks_completed} tasks</span>
                   <span className={`px-2 py-0.5 rounded-full ${
-                    d.status === "active" ? "bg-emerald-950 text-emerald-300" : "bg-gray-800 text-gray-500"
+                    d.status === "active" ? "bg-swamp/10 text-swamp" : "bg-nebula text-starlight/40"
                   }`}>{d.status}</span>
                 </div>
               </div>
@@ -154,22 +154,22 @@ function DashboardHome() {
           <h2 className="text-lg font-semibold mb-3">Recent Cases in Knowledge Graph</h2>
           <div className="space-y-2">
             {cases.map((c) => (
-              <div key={c.id} className="bg-gray-900/50 rounded-lg px-4 py-3 border border-gray-800/50">
+              <div key={c.id} className="bg-nebula/50 rounded-lg px-4 py-3 border border-nebula/60">
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="font-medium text-sm">{c.title}</h3>
-                    <p className="text-xs text-gray-400 mt-1">{c.date}</p>
+                    <p className="text-xs text-starlight/50 mt-1">{c.date}</p>
                   </div>
                   <span className={`text-xs px-2 py-0.5 rounded-full ${
-                    c.status === "unexplained" ? "bg-amber-950 text-amber-300" :
-                    c.status === "explained" ? "bg-gray-800 text-gray-400" :
-                    "bg-blue-950 text-blue-300"
+                    c.status === "unexplained" ? "bg-amber-950/60 text-amber-300" :
+                    c.status === "explained" ? "bg-nebula text-starlight/50" :
+                    "bg-blue-950/60 text-blue-300"
                   }`}>{c.status.replace(/_/g, " ")}</span>
                 </div>
               </div>
             ))}
             {cases.length === 0 && (
-              <p className="text-gray-500 text-sm">No cases indexed yet. Seed data being deployed.</p>
+              <p className="text-starlight/40 text-sm">No cases indexed yet. Seed data being deployed.</p>
             )}
           </div>
         </div>
