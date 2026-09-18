@@ -9,6 +9,7 @@ import type { ReactNode } from "react";
 const NAV_ITEMS = [
   { href: "/dashboard", label: "Overview", icon: "🛸" },
   { href: "/dashboard/knowledge", label: "Knowledge Graph", icon: "🔬" },
+  { href: "/dashboard/gallery", label: "Image Gallery", icon: "🖼️" },
   { href: "/dashboard/tasks", label: "Task Queue", icon: "⚡" },
   { href: "/dashboard/departments", label: "Departments", icon: "🏛️" },
   { href: "/dashboard/logs", label: "Activity Logs", icon: "📋" },
