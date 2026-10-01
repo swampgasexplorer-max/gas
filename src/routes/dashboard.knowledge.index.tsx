@@ -59,6 +59,11 @@ const getKnowledgeGraphData = createServerFn({ method: "GET" }).handler(async ()
   }
 
   // Get connections (edges) — each JSON file in the connections dir is one edge.
+  //
+  // The connection files use TWO schemas and both must be readable:
+  //   • New schema:    source_id / target_id / relationship (+ source_type, target_type, confidence)
+  //   • Legacy schema: from / to / type (older files, e.g. cn_colares_nimitz.json)
+  // Falling back to the legacy keys keeps those edges from rendering as blank rows.
   let connections: Array<{ source: string; target: string; relationship: string }> = [];
   try {
     const connDir = join("/home/team/shared/knowledge_graph", "connections");
@@ -67,9 +72,9 @@ const getKnowledgeGraphData = createServerFn({ method: "GET" }).handler(async ()
       for (const file of connFiles) {
         const data = JSON.parse(await readFile(join(connDir, file), "utf-8"));
         connections.push({
-          source: data.source_id,
-          target: data.target_id,
-          relationship: data.relationship,
+          source: data.source_id ?? data.from,
+          target: data.target_id ?? data.to,
+          relationship: data.relationship ?? data.type,
         });
       }
     }
