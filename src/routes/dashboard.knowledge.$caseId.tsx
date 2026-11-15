@@ -89,11 +89,36 @@ export const Route = createFileRoute("/dashboard/knowledge/$caseId")({
 // UI HELPERS
 // ============================================================
 
+/**
+ * Badge colour per case status.
+ *
+ * Covers every value the knowledge graph can hold, including the legacy
+ * "disputed" status carried by three older cases (Kaikoura lights, Varginha,
+ * Washington DC 1952). Those cases are rendered as-is; the map was extended
+ * rather than the data rewritten.
+ */
 const STATUS_STYLES: Record<string, string> = {
   unexplained: "bg-emerald-950/60 text-emerald-300 border border-emerald-700/40",
   explained: "bg-blue-950/60 text-blue-300 border border-blue-700/40",
   disputed: "bg-rose-950/60 text-rose-300 border border-rose-700/40",
   ongoing: "bg-amber-950/60 text-amber-300 border border-amber-700/40",
+  unconfirmed: "bg-nebula text-starlight/60 border border-nebula/60",
+  under_investigation: "bg-probe/20 text-probe border border-probe/30",
+  debunked: "bg-nebula text-starlight/50 border border-nebula/60",
+};
+
+/** Neutral style for a status the map above does not cover. */
+const DEFAULT_STATUS_STYLE = "bg-nebula text-starlight/60 border border-nebula/60";
+
+/** Human-readable label per case status (legacy "disputed" included). */
+const STATUS_LABELS: Record<string, string> = {
+  unexplained: "Unexplained",
+  explained: "Explained",
+  disputed: "Disputed",
+  ongoing: "Ongoing",
+  unconfirmed: "Unconfirmed",
+  under_investigation: "Under investigation",
+  debunked: "Debunked",
 };
 
 /** Icon + label styling per evidence type. */
@@ -122,7 +147,7 @@ function CaseDetailPage() {
   const { case: c, location, witnesses, evidence } = data;
   const images = evidence.filter((e) => e.type === "image");
   const heroImage = images[0];
-  const statusStyle = c.status ? STATUS_STYLES[c.status] ?? STATUS_STYLES.disputed : STATUS_STYLES.disputed;
+  const statusStyle = (c.status && STATUS_STYLES[c.status]) || DEFAULT_STATUS_STYLE;
 
   return (
     <DashboardLayout current="/dashboard/knowledge">
@@ -152,7 +177,7 @@ function CaseDetailPage() {
           <div className="flex items-center gap-2 flex-wrap">
             <h1 className="text-2xl sm:text-3xl font-bold">{c.title}</h1>
             {c.status && (
-              <span className={`text-xs px-2.5 py-1 rounded-full uppercase tracking-wide ${statusStyle}`}>{c.status}</span>
+              <span className={`text-xs px-2.5 py-1 rounded-full uppercase tracking-wide ${statusStyle}`}>{STATUS_LABELS[c.status] ?? c.status.replace(/_/g, " ")}</span>
             )}
           </div>
           <div className="flex items-center gap-4 mt-2 text-sm text-starlight/60 flex-wrap">
