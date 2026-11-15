@@ -16,6 +16,32 @@ import { join } from "node:path";
 import { DashboardLayout, StatCard } from "~/components/DashboardLayout";
 
 // ============================================================
+// STATUS MAPS
+// ============================================================
+
+/**
+ * Badge colours for a case status on the overview's "Recent Cases" list.
+ *
+ * The keys are every status the knowledge graph can hold, including the legacy
+ * "disputed" value carried by three older cases (Kaikoura lights, Varginha,
+ * Washington DC 1952) — without an entry those fell through to the blue default
+ * and looked like an unclassified record. Unknown values still fall back to the
+ * neutral style below.
+ */
+const RECENT_CASE_STATUS_STYLES: Record<string, string> = {
+  unexplained: "bg-amber-950/60 text-amber-300",          // open, no accepted answer
+  explained: "bg-nebula text-starlight/50",               // resolved by an accepted explanation
+  disputed: "bg-rose-950/60 text-rose-300",               // legacy: sources disagree
+  ongoing: "bg-amber-950/60 text-amber-300",              // investigation still running
+  unconfirmed: "bg-blue-950/60 text-blue-300",            // not yet verified
+  under_investigation: "bg-probe/20 text-probe",          // actively being worked
+  debunked: "bg-nebula text-starlight/50",                // shown to be something mundane
+};
+
+/** Neutral style for a status this map does not cover. */
+const DEFAULT_CASE_STATUS_STYLE = "bg-blue-950/60 text-blue-300";
+
+// ============================================================
 // SERVER FUNCTIONS
 // ============================================================
 
@@ -165,11 +191,7 @@ function DashboardHome() {
                     <h3 className="font-medium text-sm">{c.title}</h3>
                     <p className="text-xs text-starlight/50 mt-1">{c.date}</p>
                   </div>
-                  <span className={`text-xs px-2 py-0.5 rounded-full ${
-                    c.status === "unexplained" ? "bg-amber-950/60 text-amber-300" :
-                    c.status === "explained" ? "bg-nebula text-starlight/50" :
-                    "bg-blue-950/60 text-blue-300"
-                  }`}>{c.status.replace(/_/g, " ")}</span>
+                  <span className={`text-xs px-2 py-0.5 rounded-full ${RECENT_CASE_STATUS_STYLES[c.status] ?? DEFAULT_CASE_STATUS_STYLE}`}>{c.status.replace(/_/g, " ")}</span>
                 </div>
               </div>
             ))}
